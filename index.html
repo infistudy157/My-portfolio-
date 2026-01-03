@@ -1,85 +1,54 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Prateek Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Portfolio</title>
 
-  <style>
-    /* RESET */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f7fa;
-    }
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+  }
 
-    /* PAGE LAYOUT */
-    .page {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+  .iframe-wrapper {
+    width: 100%;
+    height: 100vh;
+  }
 
-    /* OPTIONAL HEADER */
-    .header {
-      padding: 12px 16px;
-      background: #0f172a;
-      color: #ffffff;
-      text-align: center;
-      font-size: 14px;
-      letter-spacing: 0.5px;
-    }
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
 
-    /* EMBED CONTAINER */
-    .embed-wrapper {
-      flex: 1;
-      width: 100%;
-      padding: 0;
-      background: #ffffff;
+  /* Mobile dynamic viewport fix */
+  @supports (-webkit-touch-callout: none) {
+    .iframe-wrapper {
+      height: 100dvh;
     }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
-
-    /* MOBILE OPTIMIZATION */
-    @media (max-width: 768px) {
-      .header {
-        font-size: 13px;
-        padding: 10px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
-  <div class="page">
 
-    <!-- OPTIONAL HEADER (remove if not needed) -->
-    <div class="header">
-      🚀 Portfolio Preview – Prateek Kumar
-    </div>
-
-    <!-- PORTFOLIO EMBED -->
-    <div class="embed-wrapper">
-      <iframe 
-        src="https://infistudy.github.io/Prateek-portfolio-/" 
-        loading="lazy"
-        allowfullscreen>
-      </iframe>
-    </div>
-
+  <div class="iframe-wrapper">
+    <iframe
+      src="https://infistudy.github.io/Prateek-portfolio-/"
+      loading="eager"
+      allowfullscreen>
+    </iframe>
   </div>
+
 </body>
 </html>
