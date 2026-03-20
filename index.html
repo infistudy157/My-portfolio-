@@ -3,87 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
   <title>Prateek | Portfolio</title>
-
-  <style>
-    /* Reset and Core Layout */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+  <meta name="description" content="Portfolio of Prateek - Showcasing projects and skills.">
+  <meta property="og:title" content="Prateek | Portfolio">
+  <meta property="og:description" content="Check out my latest work and projects.">
+  <meta property="og:image" content="https://infistudy.github.io/Prateek-portfolio-/preview.png"> <style>
+    :root {
+      --bg-color: #000;
+      --accent-color: #007aff;
     }
 
-    html, body {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body, html {
       width: 100%;
       height: 100%;
+      background-color: var(--bg-color);
       overflow: hidden;
-      background: #000; /* Matches your portfolio theme */
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: sans-serif;
     }
 
-    /* Full-screen wrapper */
+    /* Loading Spinner Styling */
+    .loader-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+      background: var(--bg-color);
+      transition: opacity 0.5s ease;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255,255,255,0.1);
+      border-left-color: var(--accent-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Iframe Styling */
     .iframe-wrapper {
-      position: relative;
       width: 100%;
       height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Mobile dynamic viewport fix (iOS) */
-    @supports (-webkit-touch-callout: none) {
-      .iframe-wrapper {
-        height: 100dvh;
-      }
+      height: 100dvh;
     }
 
     iframe {
       width: 100%;
-      flex-grow: 1;
+      height: 100%;
       border: none;
-      display: block;
+      opacity: 0; /* Hidden until loaded */
+      transition: opacity 0.8s ease;
     }
 
-    /* Fallback Link (Only shows if iframe fails or for accessibility) */
-    .fallback-msg {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #fff;
-      font-size: 12px;
-      text-decoration: none;
-      opacity: 0.5;
-      transition: opacity 0.3s;
-      z-index: 10;
-    }
-
-    .fallback-msg:hover {
+    .iframe-loaded iframe {
       opacity: 1;
     }
   </style>
 </head>
-
 <body>
 
-  <div class="iframe-wrapper">
-    <iframe
-      src="https://infistudy.github.io/Prateek-portfolio-/"
-      loading="eager"
-      title="Prateek Portfolio"
-      /* CRITICAL FIX: 
-         - allow-popups: lets links open in new tabs 
-         - allow-popups-to-escape-sandbox: stops the new tab from being blocked
-         - allow-top-navigation: lets links change the current page if needed
-      */
-      sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-top-navigation"
-      allowfullscreen>
-    </iframe>
-
-    <a href="https://infistudy.github.io/Prateek-portfolio-/" class="fallback-msg" target="_blank">
-      Trouble viewing? Click here to open directly.
-    </a>
+  <div id="loader" class="loader-container">
+    <div class="spinner"></div>
   </div>
+
+  <div class="iframe-wrapper" id="wrapper">
+    <iframe
+      id="portfolio-frame"
+      src="https://infistudy.github.io/Prateek-portfolio-/"
+      sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-top-navigation"
+      allowfullscreen
+      onload="handleLoad()">
+    </iframe>
+  </div>
+
+  <script>
+    function handleLoad() {
+      // Hide loader and show iframe smoothly
+      document.getElementById('loader').style.opacity = '0';
+      document.getElementById('wrapper').classList.add('iframe-loaded');
+      
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+      }, 500);
+    }
+  </script>
 
 </body>
 </html>
